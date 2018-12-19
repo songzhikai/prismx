@@ -21,11 +21,11 @@
                 <el-dropdown @command="clickFieldAttrMenu" trigger="click" placement="bottom-end" style="float: right;margin-right: 10px;">
                   <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="delete">删除</el-dropdown-item>
-                    <el-dropdown-item command="name">名称</el-dropdown-item>
+                    <el-dropdown-item command="name">名称设置</el-dropdown-item>
                     <el-dropdown-item command="fmt">格式化</el-dropdown-item>
                     <el-dropdown-item command="filter">过滤</el-dropdown-item>
                     <el-dropdown-item command="bracket">分档</el-dropdown-item>
+                    <el-dropdown-item command="delete">删除</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </li>

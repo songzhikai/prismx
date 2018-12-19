@@ -5,7 +5,10 @@
       :visible.sync="dialogVisible"
       width="30%"
       :before-close="handleClose">
-      字段名称：<el-input size="mini" v-model="field.label" style="width: 200px;"></el-input>
+      <el-form :model="field" label-width="100px" label-position="right">
+        <el-form-item label="源名称：" >{{field.desc}}</el-form-item>
+        <el-form-item label="自定义名称：" ><el-input size="mini" v-model="field.label" style="width: 200px;"></el-input></el-form-item>
+      </el-form>
       <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="confirm">确 定</el-button>
