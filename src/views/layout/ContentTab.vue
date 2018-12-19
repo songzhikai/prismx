@@ -3,13 +3,12 @@
       <el-tabs v-model="activeTab" type="card" closable @tab-remove="removeTabByRouterPath" @tab-click="tabClick" class="layout-tabs">
           <el-tab-pane v-for="(item, index) in tabs" :key="item.index" :label="item.title" :name="item.router"></el-tab-pane>
       </el-tabs>
-      <el-scrollbar class="flow-x-scrollbar" :style="{ height : scrollHeight + 'px'}">
-        <div class="contents">
-            <keep-alive :include="includeKeepAliveCompNames">
-              <router-view></router-view>
-            </keep-alive>
-        </div>
-      </el-scrollbar>
+      <div class="contents">
+      <keep-alive :include="includeKeepAliveCompNames">
+        <router-view></router-view>
+      </keep-alive>
+    </div>
+
   </div>
 </template>
 

@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <el-container class="full-pre" v-if="isFramework">
-      <el-aside :style="{'width':isChangeWidth ? '70px' : '240px', 'height': '400px;'}">
+      <el-aside style="width:240px;height:710px;border-right: 1px solid;">
         <LeftMenu></LeftMenu>
       </el-aside>
       <el-container>
         <el-header height="49px">
           <Header></Header>
         </el-header>
-        <el-main>
+        <el-main style="">
          <ContentTab></ContentTab>
         </el-main>
       </el-container>

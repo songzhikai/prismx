@@ -1,7 +1,6 @@
 <template>
-  <div class="left-menu">
+  <div class="left-menu" >
     <h1 class="logo">prismx</h1>
-    <el-scrollbar class="flow-x-scrollbar" :style="{ height : scrollHeight + 'px'}">
     <el-menu :router="true" :default-active="currentActiveMenu" class="el-menu-vertical-demo" @select="selectMenu"  @open="handleOpen" @close="handleClose" :collapse="isCollapse">
       <template v-for="(item,index) in menus">
         <el-submenu :index="index+''" v-if="item.sub!=undefined">
@@ -9,9 +8,9 @@
             <i class="iconfont icon-erjicaidanzonghefenxi"></i>
             <span>{{item.menuName}}</span>
           </template>
-            <el-menu-item v-for="(subItem,subIndex) in item.sub" :index="subItem.path" :key="subIndex">
-              <span>{{subItem.menuName}}</span>
-            </el-menu-item>
+          <el-menu-item v-for="(subItem,subIndex) in item.sub" :index="subItem.path" :key="subIndex">
+            <span>{{subItem.menuName}}</span>
+          </el-menu-item>
         </el-submenu>
         <el-menu-item :index="item.path" v-else>
           <i class="iconfont icon-ceng"></i>
@@ -19,9 +18,6 @@
         </el-menu-item>
       </template>
     </el-menu>
-    </el-scrollbar>
-    <i v-show="isCollapse" class="el-icon-arrow-right" @click="openMenu('240px')"></i>
-    <i v-show="!isCollapse" class="el-icon-arrow-left" @click="openMenu('50px')"></i>
   </div>
 </template>
 
