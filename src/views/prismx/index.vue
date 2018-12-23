@@ -2,7 +2,7 @@
   <div>
     <el-button @click="saveReport" style="float:right;margin-right: 5px;">保存</el-button>
     <el-container style="clear:both;">
-      <el-aside style="border:1px solid;height: 545px;width: 680px;">
+      <el-aside style="border:1px solid;height: 545px;width: 530px;">
 
       </el-aside>
       <el-aside style="border:1px solid;height: 545px;width: 210px;">
@@ -22,8 +22,8 @@
                   <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="delete">删除</el-dropdown-item>
-                    <el-dropdown-item command="name">名称</el-dropdown-item>
-                    <el-dropdown-item command="fmt">格式化</el-dropdown-item>
+                    <el-dropdown-item command="name">名称设置</el-dropdown-item>
+                    <el-dropdown-item command="fmt">数字格式化</el-dropdown-item>
                     <el-dropdown-item command="filter">过滤</el-dropdown-item>
                     <el-dropdown-item command="bracket">分档</el-dropdown-item>
                   </el-dropdown-menu>
@@ -39,8 +39,8 @@
                 <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="delete">删除</el-dropdown-item>
-                  <el-dropdown-item command="name">名称</el-dropdown-item>
-                  <el-dropdown-item command="fmt">格式化</el-dropdown-item>
+                  <el-dropdown-item command="name">名称设置</el-dropdown-item>
+                  <el-dropdown-item command="fmt">数字格式化</el-dropdown-item>
                   <el-dropdown-item command="filter">过滤</el-dropdown-item>
                   <el-dropdown-item command="bracket">分档</el-dropdown-item>
                 </el-dropdown-menu>
@@ -56,8 +56,8 @@
                 <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="delete">删除</el-dropdown-item>
-                  <el-dropdown-item command="name">名称</el-dropdown-item>
-                  <el-dropdown-item command="fmt">格式化</el-dropdown-item>
+                  <el-dropdown-item command="name">名称设置</el-dropdown-item>
+                  <el-dropdown-item command="fmt">数字格式化</el-dropdown-item>
                   <el-dropdown-item command="filter">过滤</el-dropdown-item>
                   <el-dropdown-item command="bracket">分档</el-dropdown-item>
                 </el-dropdown-menu>
@@ -69,6 +69,7 @@
     </el-container>
     <ChangeFieldLabel ref="fieldLabelRef"></ChangeFieldLabel>
     <SaveReportDialog ref="saveReportDialogRef"></SaveReportDialog>
+    <FieldFilter ref="fieldFilterRef"></FieldFilter>
 
   </div>
 </template>
@@ -77,10 +78,11 @@
   import Draggable from "vuedraggable";
   import ChangeFieldLabel from "@/views/prismx/components/changeFieldLabel";
   import SaveReportDialog from "@/views/prismx/components/saveReportDialog";
+  import FieldFilter from "@/views/prismx/components/fieldFilter";
   import EventBus from '@/components/EventBus.js'
   import {mapMutations} from 'vuex'
     export default {
-      components: { Draggable, ChangeFieldLabel, SaveReportDialog },
+      components: { Draggable, ChangeFieldLabel, SaveReportDialog, FieldFilter },
       data(){
         return {
           altercolumnList:[
@@ -139,7 +141,7 @@
           }else if(type == 'fmt'){
 
           }else if(type == 'filter'){
-
+            this.fieldFilter()
           }else if(type == 'bracket'){
 
           }
@@ -181,6 +183,12 @@
          */
         changeLabel() {
           this.$refs.fieldLabelRef.show(this.field);
+        },
+        /**
+         * 字段过滤
+         */
+        fieldFilter() {
+          this.$refs.fieldFilterRef.show(this.field);
         },
         fillPivot(){
           let pivot = this.$store.state.prismx.pivot;
