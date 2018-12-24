@@ -71,6 +71,7 @@
     <SaveReportDialog ref="saveReportDialogRef"></SaveReportDialog>
     <FormatField ref="formatFieldRef"></FormatField>
     <FieldFilter ref="fieldFilterRef"></FieldFilter>
+    <Bracket ref="bracketRef"></Bracket>
 
   </div>
 </template>
@@ -81,10 +82,11 @@
   import SaveReportDialog from "@/views/prismx/components/saveReportDialog";
   import FormatField from "@/views/prismx/components/formatField";
   import FieldFilter from "@/views/prismx/components/fieldFilter";
+  import Bracket from "@/views/prismx/components/bracket";
   import EventBus from '@/components/EventBus.js'
   import {mapMutations} from 'vuex'
     export default {
-      components: { Draggable, ChangeFieldLabel, SaveReportDialog, FormatField, FieldFilter},
+      components: { Draggable, ChangeFieldLabel, SaveReportDialog, FormatField, FieldFilter, Bracket},
       data(){
         return {
           altercolumnList:[
@@ -145,7 +147,7 @@
           }else if(type == 'filter'){
             this.fieldFilter()
           }else if(type == 'bracket'){
-
+            this.bracket();
           }
         },
         /**
@@ -197,6 +199,12 @@
          */
         fieldFilter() {
           this.$refs.fieldFilterRef.show(this.field);
+        },
+        /**
+         * 分档
+         */
+        bracket() {
+          this.$refs.bracketRef.show(this.field);
         },
         fillPivot(){
           let pivot = this.$store.state.prismx.pivot;

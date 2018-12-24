@@ -6,7 +6,7 @@
       width="30%"
       :before-close="handleClose">
       分类：
-      <el-tabs v-model="activeTabName" @tab-click="handleClick">
+      <el-tabs v-model="activeTabName" @tab-click="tabClick">
         <el-tab-pane label="常规" name="0">
           <div>常规单元格格式不包含任何特定的数字格式</div>
           <div style="margin-top: 10px;font-weight: bold;">
@@ -104,6 +104,9 @@
               done();
             })
             .catch(_ => {});
+        },
+        tabClick(obj){
+          this.activeTabName = obj.name
         }
       },
       mounted(){
