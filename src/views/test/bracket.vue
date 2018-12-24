@@ -22,7 +22,7 @@
   import Util from '@/utils/Utils.js'
   import Draggable from 'draggable'
     export default {
-      name: "slider",
+      name: "bracket",
       components: { Draggable },
       data(){
         return {
