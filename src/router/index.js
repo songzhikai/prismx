@@ -12,6 +12,7 @@ export default new Router({
     { path: '/test/testDataset', component: () => import('@/views/test/testDataset'), name: 'testDataset' },
     { path: '/test/testForm', component: () => import('@/views/test/testForm'), name: 'testForm' },
     { path: '/test/testTree', component: () => import('@/views/test/testTree'), name: 'testTree' },
-    { path: '/test/testSelect', component: () => import('@/views/test/testSelect'), name: 'testSelect' }
+    { path: '/test/testSelect', component: () => import('@/views/test/testSelect'), name: 'testSelect' },
+    { path: '/test/bracket', component: () => import('@/views/test/bracket'), name: 'bracket' }
   ]
 })
