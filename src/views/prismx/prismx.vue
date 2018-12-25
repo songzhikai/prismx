@@ -228,14 +228,6 @@
         swapRowColumn(){
           let rowsList = JSON.parse(JSON.stringify(this.columnsList))
           let columnsList = JSON.parse(JSON.stringify(this.rowsList))
-          rowsList = rowsList.map(item => {
-            item.type = 'rows'
-            return item
-          })
-          columnsList = columnsList.map(item => {
-            item.type = 'columns'
-            return item
-          })
           this.rowsList = rowsList
           this.columnsList = columnsList
           let pivot = Object.assign({rows: rowsList, columns: columnsList, values: this.valuesList})
