@@ -8,14 +8,17 @@
       <el-aside style="border:1px solid;height: 545px;width: 210px;">
         <div class="alternative">
           <Draggable :list="altercolumnList" :options="{group:{ name:'pivotModules',  pull:'clone', put:false },sort:false}" @start="startDrag">
-              <li v-for="(item, index) in altercolumnList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" :column="item.column" region="altercolumn" :label="item.label" :desc="item.desc">{{item.label}}
+              <li v-for="(item, index) in altercolumnList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" :column="item.column" region="altercolumn" :label="item.label" :desc="item.desc">
+                {{item.label}}
+                <i v-if="!item.stored" class="el-icon-star-off" @click="storeField(item)"></i>
+                <i v-else class="el-icon-star-on" @click="storeField(item)"></i>
               </li>
           </Draggable>
         </div>
       </el-aside>
       <el-main style="border:1px solid;height: 545px;">
         <div>
-          <span style="margin-left: 250px;">
+          <span style="margin-left: 255px;">
             <el-tooltip  class="item" effect="dark" content="行列互换" placement="top">
              <i class="el-icon-sort" @click="swapRowColumn"></i>
             </el-tooltip>
@@ -97,21 +100,21 @@
       data(){
         return {
           altercolumnList:[
-            {id: '1', column: '1', label: '维度1', type: 'dim', desc: '维度1'},
-            {id: '2', column: '2', label: '维度2', type: 'dim', desc: '维度2'},
-            {id: '3', column: '3', label: '维度3', type: 'dim', desc: '维度3'},
-            {id: '4', column: '4', label: '维度4', type: 'dim', desc: '维度4'},
-            {id: '5', column: '5', label: '维度5', type: 'dim', desc: '维度5'},
+            {id: '1', column: '1', label: '维度1', type: 'dim', desc: '维度1', stored: false},
+            {id: '2', column: '2', label: '维度2', type: 'dim', desc: '维度2', stored: false},
+            {id: '3', column: '3', label: '维度3', type: 'dim', desc: '维度3', stored: false},
+            {id: '4', column: '4', label: '维度4', type: 'dim', desc: '维度4', stored: false},
+            {id: '5', column: '5', label: '维度5', type: 'dim', desc: '维度5', stored: false},
           ],
           rowsList:[],
           columnsList:[],
           valuesList:[],
           field: {id: '', type: '', label: '', desc: '', region: '', }, //当前点击下三角的字段
-
+          storedFields: [] //已收藏字段 存储的是id数组
         }
       },
       methods:{
-        ...mapMutations(['setPivot']),
+        ...mapMutations(['setPivot', 'setStoredFields']),
         /**
          * 保存报表
          **/
@@ -232,7 +235,33 @@
           this.columnsList = columnsList
           let pivot = Object.assign({rows: rowsList, columns: columnsList, values: this.valuesList})
           this.setPivot(pivot)
-
+        },
+        /**
+         * 收藏备选列字段
+         * @param obj
+         */
+        storeField(obj){
+          let flag = this.storedFields.some(item => item == obj.id)
+          if(flag == true){ //已收藏
+            //移除
+            this.storedFields = this.storedFields.filter(item => item != obj.id)
+            this.altercolumnList = this.altercolumnList.map(item => {
+              if(item.id == obj.id){
+                item.stored = false
+              }
+              return item
+            })
+          }else{
+            //增加
+            this.storedFields.push(obj.id)
+            this.altercolumnList = this.altercolumnList.map(item => {
+              if(item.id == obj.id){
+                item.stored = true
+              }
+              return item
+            })
+          }
+          this.setStoredFields(this.storedFields)
         }
       },
       mounted(){
@@ -257,9 +286,11 @@
     width: 180px;
   }
   .rows li, .columns li, .values li{
-    width:248px;
+    width:270px;
   }
   .alternative li i{
-    display: none;
+    float: right;
+    margin-right: 10px;
+    /*display: none;*/
   }
 </style>
