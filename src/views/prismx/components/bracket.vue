@@ -48,8 +48,9 @@
       }
     },
     methods: {
-      show(){
-        this
+      show(obj){
+        this.pointList = Object.assign([])
+        this.field = Object.assign(obj)
         this.dialogVisible = true;
       },
       addSpan(e){

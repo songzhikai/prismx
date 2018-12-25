@@ -22,7 +22,14 @@
         </el-select>
       </div>
       <div v-else-if="field.type == 'kpi'">
-
+        <el-form label-width="90px">
+          <el-form-item label="大于等于：">
+            <el-input v-model="moreEqualThan"></el-input>
+          </el-form-item>
+          <el-form-item label="小于等于：">
+            <el-input v-model="lessEqualThan"></el-input>
+          </el-form-item>
+        </el-form>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -54,6 +61,8 @@
             label: 'JavaScript'
           }],
           selectedDimList: [],
+          moreEqualThan: '', //指标过滤 大于等于
+          lessEqualThan: '', //指标过滤 小于等于
         }
       },
       methods:{
@@ -64,7 +73,7 @@
          */
         show(obj){
           this.field = Object.assign(obj)
-
+          // this.field.type = 'kpi'
           this.dialogVisible = true;
         },
         handleClose(done) {
