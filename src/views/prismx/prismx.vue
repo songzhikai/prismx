@@ -8,7 +8,7 @@
       <el-aside style="border:1px solid;height: 545px;width: 210px;">
         <div class="alternative">
           <Draggable :list="altercolumnList" :options="{group:{ name:'pivotModules',  pull:'clone', put:false },sort:false}" @start="startDrag">
-              <li v-for="(item, index) in altercolumnList" :key="index" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" :column="item.column" region="altercolumn" :label="item.label" :desc="item.desc">{{item.label}}
+              <li v-for="(item, index) in altercolumnList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" :column="item.column" region="altercolumn" :label="item.label" :desc="item.desc">{{item.label}}
               </li>
           </Draggable>
         </div>
@@ -16,7 +16,7 @@
       <el-main style="border:1px solid;height: 545px;">
         <div class="rows" style="border: 1px solid;height: 32%;overflow-y:auto;">
           <Draggable :list="rowsList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height: 95%">
-              <li v-for="(item, index) in rowsList" :key="index" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="rows" :column="item.column" :label="item.label" :desc="item.desc">
+              <li v-for="(item, index) in rowsList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="rows" :column="item.column" :label="item.label" :desc="item.desc">
                 {{item.label}}
                 <el-dropdown @command="clickFieldAttrMenu" trigger="click" placement="bottom-end" style="float: right;margin-right: 10px;">
                   <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
@@ -33,7 +33,7 @@
         </div>
         <div class="columns"  style="border: 1px solid;height: 32%;overflow-y:auto;">
           <Draggable :list="columnsList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height:95%;">
-            <li v-for="(item, index) in columnsList" :key="index" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="columns" :column="item.column" :label="item.label" :desc="item.desc">
+            <li v-for="(item, index) in columnsList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="columns" :column="item.column" :label="item.label" :desc="item.desc">
               {{item.label}}
               <el-dropdown @command="clickFieldAttrMenu" trigger="click" placement="bottom-end" style="float: right;margin-right: 10px;">
                 <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
@@ -50,7 +50,7 @@
         </div>
         <div class="values"  style="border: 1px solid;height: 33%;overflow-y:auto;">
           <Draggable :list="valuesList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height:95%;">
-            <li v-for="(item, index) in valuesList" :key="index" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="values" :column="item.column" :label="item.label" :desc="item.desc">
+            <li v-for="(item, index) in valuesList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="values" :column="item.column" :label="item.label" :desc="item.desc">
               {{item.label}}
               <el-dropdown @command="clickFieldAttrMenu" trigger="click" placement="bottom-end" style="float: right;margin-right: 10px;">
                 <i class="el-icon-caret-bottom" @click="fieldSetClick"></i>
@@ -168,11 +168,12 @@
             }else if(this.field.region == 'values'){
               this.valuesList = Object.assign(this.valuesList.filter(item => item.id != this.field.id))
             }
+            let pivot = Object.assign({rows: this.rowsList, columns: this.columnsList, valuesList: this.valuesList})
+            this.setPivot(pivot)
             this.$message({
               type: 'success',
               message: '删除成功!'
             });
-            _this.fillPivot();
             //后台删除
 
           }).catch(() => {
@@ -201,12 +202,13 @@
           this.$refs.fieldFilterRef.show(this.field);
         },
         /**
-         * 分档
+         * 指标分档
          */
         bracket() {
           this.$refs.bracketRef.show(this.field);
         },
-        fillPivot(){
+
+        getPivotFromStore(){
           let pivot = this.$store.state.prismx.pivot;
           this.rowsList = Object.assign(pivot['rows'])
           this.columnsList = Object.assign(pivot['columns'])
@@ -217,7 +219,7 @@
         let _this = this
         EventBus.$off('pivotChanged')
         EventBus.$on('pivotChanged', function(){
-          _this.fillPivot();
+          _this.getPivotFromStore();
         })
       }
     }

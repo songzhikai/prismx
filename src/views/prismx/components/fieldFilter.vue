@@ -3,7 +3,7 @@
     <el-dialog
       title="过滤"
       :visible.sync="dialogVisible"
-      width="30%"
+      width="26%"
       :before-close="handleClose">
       <div v-if="field.type == 'dim'">
         <el-select

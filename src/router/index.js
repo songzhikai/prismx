@@ -6,7 +6,7 @@ Vue.use(Router)
 export default new Router({
   base: '/prismx/',
   routes: [
-    { path: '/prismx/index', component: () => import('@/views/prismx/index'), name: 'prismx' },
+    { path: '/prismx/prismx', component: () => import('@/views/prismx/prismx'), name: 'prismx' },
     { path: '/dataset/components/list', component: () => import('@/views/dataset/components/list'), name: 'datasetList' },
     { path: '/dataset/components/create', component: () => import('@/views/dataset/components/create'), name: 'datasetCreate' },
     { path: '/test/testDataset', component: () => import('@/views/test/testDataset'), name: 'testDataset' },
