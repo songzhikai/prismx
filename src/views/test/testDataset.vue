@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import Util from '@/views/test/inherit.js'
     export default {
       data(){
         return {
@@ -115,6 +116,7 @@
       },
       mounted(){
         // this.testMap();
+        Util.getPerson();
       }
     }
 </script>
