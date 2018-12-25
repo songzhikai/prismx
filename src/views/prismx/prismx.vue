@@ -14,7 +14,14 @@
         </div>
       </el-aside>
       <el-main style="border:1px solid;height: 545px;">
-        <div class="rows" style="border: 1px solid;height: 32%;overflow-y:auto;">
+        <div>
+          <span style="margin-left: 250px;">
+            <el-tooltip  class="item" effect="dark" content="行列互换" placement="top">
+             <i class="el-icon-sort" @click="swapRowColumn"></i>
+            </el-tooltip>
+          </span>
+        </div>
+        <div class="rows" style="border: 1px solid;height: 30%;overflow-y:auto;">
           <Draggable :list="rowsList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height: 95%">
               <li v-for="(item, index) in rowsList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="rows" :column="item.column" :label="item.label" :desc="item.desc">
                 {{item.label}}
@@ -31,7 +38,7 @@
               </li>
           </Draggable>
         </div>
-        <div class="columns"  style="border: 1px solid;height: 32%;overflow-y:auto;">
+        <div class="columns"  style="border: 1px solid;height: 30%;overflow-y:auto;">
           <Draggable :list="columnsList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height:95%;">
             <li v-for="(item, index) in columnsList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="columns" :column="item.column" :label="item.label" :desc="item.desc">
               {{item.label}}
@@ -48,7 +55,7 @@
             </li>
           </Draggable>
         </div>
-        <div class="values"  style="border: 1px solid;height: 33%;overflow-y:auto;">
+        <div class="values"  style="border: 1px solid;height: 30%;overflow-y:auto;">
           <Draggable :list="valuesList" :options="{group:{ name:'pivotModules'}}" @start="startDrag" @add="add" @end="drop" style="height:95%;">
             <li v-for="(item, index) in valuesList" :key="item.id" style="margin:5px;padding:0px;" :id="item.id" :type="item.type" region="values" :column="item.column" :label="item.label" :desc="item.desc">
               {{item.label}}
@@ -114,7 +121,6 @@
         startDrag(){
         },
         drop(){
-          // alert('drop');
         },
         add(index, element){
           let pivot = Object.assign({}, {rows: this.rowsList}, {columns: this.columnsList}, {values: this.valuesList} )
@@ -207,12 +213,34 @@
         bracket() {
           this.$refs.bracketRef.show(this.field);
         },
-
+        /**
+         * 从store中获取pivot
+         */
         getPivotFromStore(){
           let pivot = this.$store.state.prismx.pivot;
           this.rowsList = Object.assign(pivot['rows'])
           this.columnsList = Object.assign(pivot['columns'])
           this.valuesList = Object.assign(pivot['values'])
+        },
+        /**
+         * 交换行列
+         */
+        swapRowColumn(){
+          let rowsList = JSON.parse(JSON.stringify(this.columnsList))
+          let columnsList = JSON.parse(JSON.stringify(this.rowsList))
+          rowsList = rowsList.map(item => {
+            item.type = 'rows'
+            return item
+          })
+          columnsList = columnsList.map(item => {
+            item.type = 'columns'
+            return item
+          })
+          this.rowsList = rowsList
+          this.columnsList = columnsList
+          let pivot = Object.assign({rows: rowsList, columns: columnsList, values: this.valuesList})
+          this.setPivot(pivot)
+
         }
       },
       mounted(){
