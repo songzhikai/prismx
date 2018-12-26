@@ -26,6 +26,10 @@ const menuObj = {
         {
           menuName: '测试分档',
           path: '/test/bracket'
+        },
+        {
+          menuName: '测试table',
+          path: '/test/table'
         }
       ]
     }
