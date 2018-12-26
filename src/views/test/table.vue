@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>element  table 动态表头</div>
     <el-table style="width: 100%">
       <el-table-column v-for="item in tableDatas" :key="item.id" label="Date" :prop="item.type" :render-header="renderHeader"></el-table-column>
     </el-table>
