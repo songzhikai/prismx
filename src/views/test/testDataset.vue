@@ -1,8 +1,9 @@
 <template>
   <div>
-    <input type="text" v-focus="{text: 'aaaa'}">
-    <button v-demo="styleCtrl">请点击我</button>
-    <button @click="changeColor">改变颜色</button>
+    请看控制台
+    <!--<input type="text" v-focus="{text: 'aaaa'}">-->
+    <!--<button v-demo="styleCtrl">请点击我</button>-->
+    <!--<button @click="changeColor">改变颜色</button>-->
   </div>
 </template>
 
@@ -111,12 +112,10 @@
         testHuo(){
           let a = ""
           let b = a || 5
-          alert(b);
-        }
+        },
       },
       mounted(){
-        // this.testMap();
-        Util.getPerson();
+        Util.newWriteFunc();
       }
     }
 </script>
