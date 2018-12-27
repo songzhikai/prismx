@@ -71,13 +71,13 @@
           h('p',{ style: { padding: '0px', margin: '0px' } }, [
             curtDataObj.editing == true
               ?
-            h('input', { domProps: { value: curtDataObj.name }, style: { marginTop: '10px', width: '90px', float: 'left' }, attrs: { size: 'mini' }, on: {
+            h('input', { domProps: { value: curtDataObj.name }, style: { margin: '10px 0 0 10px', width: '90px', float: 'left' }, attrs: { size: 'mini' }, on: {
                 input(e){
                   curtDataObj.name = e.target.value
                 }
               }}, [])
               :
-            h('span', {style: {width: '90px', float:'left'}}, [curtDataObj.name.length > 10 ? curtDataObj.name.substring(0, 10)+'...' : curtDataObj.name]),
+            h('span', {style: {width: '90px', margin: '0 0 0 10px', float:'left'}}, [curtDataObj.name.length > 10 ? curtDataObj.name.substring(0, 10)+'...' : curtDataObj.name]),
             curtDataObj.editing == false
               ?
             h('i', { class: 'el-icon-edit', style:{ padding: '0px', margin: '13px 0 0 10px', float:'left' },
