@@ -14,6 +14,7 @@ export default new Router({
     { path: '/test/testTree', component: () => import('@/views/test/testTree'), name: 'testTree' },
     { path: '/test/testSelect', component: () => import('@/views/test/testSelect'), name: 'testSelect' },
     { path: '/test/table', component: () => import('@/views/test/table'), name: 'table' },
-    { path: '/test/bracket', component: () => import('@/views/test/bracket'), name: 'bracket' }
+    { path: '/test/bracket', component: () => import('@/views/test/bracket'), name: 'bracket' },
+    { path: '/test/luckyprize', component: () => import('@/views/test/luckyprize'), name: 'luckyprize' }
   ]
 })

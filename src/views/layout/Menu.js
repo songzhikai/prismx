@@ -30,6 +30,10 @@ const menuObj = {
         {
           menuName: '测试table',
           path: '/test/table'
+        },
+        {
+          menuName: '测试luckyprize',
+          path: '/test/luckyprize'
         }
       ]
     }
