@@ -42,7 +42,7 @@
     data() {
       return {
         tableDatas: [
-          {id: '1', name: 'area_no111111', dataType: 'date', isFilter: false, editing: false},
+          {id: '1', name: 'area_no111111', dataType: 'date', isFilter: true, editing: false},
           {id: '2', name: 'city_no', dataType: 'text', isFilter: false, editing: false},
           {id: '3', name: 'date', dataType: 'time', isFilter: true, editing: false},
           {id: '4', name: 'desc', dataType: 'text', isFilter: false, editing: false },
@@ -71,26 +71,26 @@
           h('p',{ style: { padding: '0px', margin: '0px' } }, [
             curtDataObj.editing == true
               ?
-            h('el-input', {on: {
+            h('input', { domProps: { value: curtDataObj.name }, style: { marginTop: '10px', width: '90px', float: 'left' }, attrs: { size: 'mini' }, on: {
                 input(e){
                   curtDataObj.name = e.target.value
                 }
               }}, [])
               :
-            h('span', {style: {float:'left'}}, [curtDataObj.name.length > 10 ? curtDataObj.name.substring(0, 10)+'...' : curtDataObj.name]),
+            h('span', {style: {width: '90px', float:'left'}}, [curtDataObj.name.length > 10 ? curtDataObj.name.substring(0, 10)+'...' : curtDataObj.name]),
             curtDataObj.editing == false
               ?
             h('i', { class: 'el-icon-edit', style:{ padding: '0px', margin: '13px 0 0 10px', float:'left' },
               on: { click(e){
-                  curtDataObj.editing == true
+                  curtDataObj.editing = true
                 }
               }
             })
             :
-            h('i', { class: 'el-icon-circle-check-outline', style:{ padding: '0px', margin: '13px 0 0 10px', float:'left' },
+            h('i', { class: 'iconfont icon-baocun1', style:{ padding: '0px', margin: '0 0 0 6px', float:'left' },
               on: {
                 click(){
-                  curtDataObj.editing == false
+                  curtDataObj.editing = false
                 }
               }
             })
@@ -100,7 +100,9 @@
                 style: {float: 'left'},
                 on: {
                   command(command){
-                    alert(command);
+                    if(command == 'filter'){
+                      curtDataObj.isFilter = true
+                    }
                   }
                 }
               },
