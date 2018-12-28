@@ -15,6 +15,7 @@ export default new Router({
     { path: '/test/testSelect', component: () => import('@/views/test/testSelect'), name: 'testSelect' },
     { path: '/test/table', component: () => import('@/views/test/table'), name: 'table' },
     { path: '/test/bracket', component: () => import('@/views/test/bracket'), name: 'bracket' },
-    { path: '/test/luckyprize', component: () => import('@/views/test/luckyprize'), name: 'luckyprize' }
+    { path: '/test/luckywheel', component: () => import('@/views/test/luckywheel'), name: 'luckywheel' },
+    { path: '/test/ninesquare', component: () => import('@/views/test/ninesquare'), name: 'ninesquare' }
   ]
 })

@@ -32,8 +32,12 @@ const menuObj = {
           path: '/test/table'
         },
         {
-          menuName: '测试luckyprize',
-          path: '/test/luckyprize'
+          menuName: '测试luckywheel',
+          path: '/test/luckywheel'
+        },
+        {
+          menuName: '测试ninesquare',
+          path: '/test/ninesquare'
         }
       ]
     }
