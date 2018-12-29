@@ -4,9 +4,9 @@
           <el-tab-pane v-for="(item, index) in tabs" :key="item.index" :label="item.title" :name="item.router"></el-tab-pane>
       </el-tabs>
       <div class="contents">
-      <keep-alive :include="includeKeepAliveCompNames">
+      <!--<keep-alive :include="includeKeepAliveCompNames">-->
         <router-view></router-view>
-      </keep-alive>
+      <!--</keep-alive>-->
     </div>
 
   </div>

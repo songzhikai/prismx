@@ -12,7 +12,6 @@ import router from './router'
 import store from './store'
 
 import i18n from './lang' // Internationalization
-import './mock' // simulation data
 
 import * as filters from './filters' // global filters
 Vue.prototype.serverUrl = process.env.BASE_API;

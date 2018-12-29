@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container class="full-pre" v-if="isFramework">
-      <el-aside style="width:240px;height:710px;border-right: 1px solid;">
-        <LeftMenu></LeftMenu>
-      </el-aside>
+      <!--<el-aside style="width:240px;height:710px;border-right: 1px solid;">-->
+        <!--<LeftMenu></LeftMenu>-->
+      <!--</el-aside>-->
       <el-container>
         <el-header height="49px">
           <Header></Header>
@@ -29,7 +29,6 @@
   import LeftMenu from './LeftMenu'
   import ContentTab from './ContentTab'
   import ContentSingle from './ContentSingle'
-  import requestApi from './requestApi'
   import EventBus from '@/components/EventBus'
 
 
@@ -45,22 +44,6 @@
     },
     components:{Header,LeftMenu,ContentTab,ContentSingle},
     beforeCreate:function(){
-      if(sessionStorage.getItem("userInfo")==undefined){
-        requestApi.getUserInfo({}).then(response=>{
-          let userInfo = response.data;
-          if(userInfo!=null&&userInfo!=undefined){
-            sessionStorage.setItem("userInfo",userInfo);
-            sessionStorage.setItem("tenantId",userInfo.tenantId);
-            sessionStorage.setItem("loginId",userInfo.loginId);
-            sessionStorage.setItem("channelId",userInfo.channelId);
-          }
-        });
-        // let userInfo={"loginId":"U001","tenantId":"T001","channelId":"channelId1"};
-        // sessionStorage.setItem("userInfo",userInfo);
-        // sessionStorage.setItem("tenantId",userInfo.tenantId);
-        // sessionStorage.setItem("loginId",userInfo.loginId);
-        // sessionStorage.setItem("channelId",userInfo.channelId);
-      }
     },
     methods: {
       dispatch(){

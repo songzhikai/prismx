@@ -1,15 +1,15 @@
 <template>
   <div>
-    <ul class="lottery">
-      <li id="0" class=""><img :src="prizes[0].img"><div class="mask"></div></li>
-      <li id="1" class=""><img :src="prizes[1].img"><div class="mask"></div></li>
-      <li id="2" class=""><img :src="prizes[2].img"><div class="mask"></div></li>
-      <li id="7" class=""><img :src="prizes[3].img"><div class="mask"></div></li>
+    <ul>
+      <li id="0" class="lottery"><img :src="prizes[0].img"><div class="mask"></div></li>
+      <li id="1" class="lottery"><img :src="prizes[1].img"><div class="mask"></div></li>
+      <li id="2" class="lottery"><img :src="prizes[2].img"><div class="mask"></div></li>
+      <li id="7" class="lottery"><img :src="prizes[3].img"><div class="mask"></div></li>
       <a href="javascript:void(0);" @click="startLottery" :style="'background-image:url('+startLotteryImg+')'"></a>
-      <li id="3" class=""><img :src="prizes[4].img"><div class="mask"></div></li>
-      <li id="6" class=""><img :src="prizes[5].img"><div class="mask"></div></li>
-      <li id="5" class=""><img :src="prizes[6].img"><div class="mask"></div></li>
-      <li id="4" class=""><img :src="prizes[7].img"><div class="mask"></div></li>
+      <li id="3" class="lottery"><img :src="prizes[4].img"><div class="mask"></div></li>
+      <li id="6" class="lottery"><img :src="prizes[5].img"><div class="mask"></div></li>
+      <li id="5" class="lottery"><img :src="prizes[6].img"><div class="mask"></div></li>
+      <li id="4" class="lottery"><img :src="prizes[7].img"><div class="mask"></div></li>
     </ul>
 
     <el-dialog
@@ -92,14 +92,13 @@ export default {
         this.rollIndex = 0
       }
       for(let index=0;index<this.circleNum;index++){
-        document.getElementsByTagName('li')[index].className = ''
+        document.getElementsByClassName('lottery')[index].className = 'lottery'
       }
       for(let index=0;index<this.circleNum;index++){
-        let idVal = document.getElementsByTagName('li')[index].id;
-        console.log(document.getElementsByTagName('li')[index])
+        let idVal = document.getElementsByClassName('lottery')[index].id;
         if(parseInt(idVal) == this.rollIndex){
           // console.log(this.rollIndex);
-          document.getElementsByTagName('li')[index].className = 'active'
+          document.getElementsByClassName('lottery')[index].className = 'lottery active'
         }
       }
       //根据圈数改变速度
@@ -123,7 +122,7 @@ export default {
       this.rollStepTimes = 0
       this.rollIndex = -1
       window.clearTimeout(this.timer)
-      // this.dialogVisible = true
+      this.dialogVisible = true
     },
     handleClose(){
       this.dialogVisible = false
