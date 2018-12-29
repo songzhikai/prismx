@@ -109,8 +109,9 @@ export default {
       if(this.rollStepTimes > this.addOnCircles2*8){
         this.rollSpeed = 500
       }
+
+      //停止控制 prizeId
       if(this.rollStepTimes == (6*8+parseInt(this.prizeId)+1)){
-        //第七圈的停止控制 prizeId
         this.initLottery();
         return;
       }
