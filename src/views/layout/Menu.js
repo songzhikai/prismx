@@ -8,6 +8,10 @@ const menuObj = {
       menuName: '测试目录',
       sub: [
         {
+          menuName: '普通测试',
+          path: '/test/test'
+        },
+        {
           menuName: '测试数据集列表',
           path: '/test/testDataset'
         },

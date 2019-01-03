@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container class="full-pre" v-if="isFramework">
-      <!--<el-aside style="width:240px;height:710px;border-right: 1px solid;">-->
-        <!--<LeftMenu></LeftMenu>-->
-      <!--</el-aside>-->
+      <el-aside style="width:240px;height:710px;border-right: 1px solid;">
+        <LeftMenu></LeftMenu>
+      </el-aside>
       <el-container>
         <el-header height="49px">
           <Header></Header>
