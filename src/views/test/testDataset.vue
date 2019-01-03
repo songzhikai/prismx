@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import Inherit from '@/views/test/inherit.js'
     export default {
       data(){
         return {
@@ -115,7 +114,6 @@
         },
       },
       mounted(){
-        Inherit.newWriteFunc();
       }
     }
 </script>
