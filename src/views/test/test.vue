@@ -78,10 +78,21 @@
           }
           Factory(type, content)
 
+        },
+        testForEach(){
+          var arr = [{id: '1', value: '111'}, {id: '2', value: '222'}, {id: '3', value: '333'}]
+          arr.forEach(item => {
+            if(item.id == 3){
+              item.value= '4444'
+            }
+          })
+          let div = document.createElement('div')
+          div.innerHTML = JSON.stringify(arr)
+          document.getElementById('container').appendChild(div)
         }
       },
       mounted(){
-        this.factoryFunc('java', '我是java');
+        this.testForEach();
       }
     }
 </script>
